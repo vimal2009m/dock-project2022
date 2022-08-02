@@ -1,0 +1,15 @@
+- hosts: all
+  become: True
+  tasks:
+    - name: Install apache packages
+      apt:
+        name: apache2
+        state: "present"
+    - name: "copy"
+      copy: 
+        content: "Welcome to Ansible with Jenkins Hello"
+        dest: /var/www/html/index.html
+    - name: Service start
+      service:
+        name: apache2
+        state: started
